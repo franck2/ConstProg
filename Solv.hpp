@@ -2,7 +2,9 @@
 #define DEF_SOLVEUR
 
 #include <iostream>
-
+#include <list>
+#include "Noeud.hpp"
+#include "Prob.hpp"
 
 class Solveur{
 
@@ -13,7 +15,8 @@ public:
 	virtual void branch(Noeud noeud);
 
 private:
-	Element *premier;	
+	std::list<Noeud> noeuds;
+	Prob p;
 
 };
 
