@@ -4,7 +4,7 @@
 #include <iostream>
 #include <list>
 #include "Noeud.hpp"
-#include "Prob.hpp"
+#include "Problem.hpp"
 
 class Solveur{
 
@@ -16,7 +16,7 @@ public:
 
 private:
 	std::list<Noeud> noeuds;
-	Prob p;
+	Problem p;
 
 };
 
