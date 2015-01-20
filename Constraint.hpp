@@ -8,9 +8,9 @@ class Constraint{
 
 public:
 	//teste la contrainte
-	virtual int test();
+	virtual int test() = 0;
 
-private:
+
 
 
 };

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <set>
 #include <vector>
+#include "Noeud.hpp"
 
 class Backtracking{
 

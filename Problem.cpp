@@ -4,10 +4,10 @@ using namespace std;
 
 Problem::Problem(){
 }
-
-Problem::Problem(int x, vector<Constraint> cst){
+ 
+Problem::Problem(int x, vector<Constraint*> cst){
 	n=x;
-	constraints=cst;
+	constraints = cst;
 }
 
 Noeud Problem::initialNode(){
