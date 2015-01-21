@@ -15,21 +15,19 @@ int BacktrackingNonRec::solve(){
 		std::list<Noeud>::iterator list_iter2 = noeuds.begin();
 		while(list_iter2 != noeuds.end()){
 
-			cout<<"noeud : "<<cpt<<endl;
-
 			std::list<Noeud>::iterator temp = list_iter2;
 
 			list_iter2++;
 
 			Proof p = problem.testSat(*temp);
 
-				if(p==succes){
+				if(p == succes){
 					cout<<"succes"<<endl;
 					nb_so++;
 					(*temp).toString();
 					noeuds.erase(temp);
 				}
-				else if(p==echec){
+				else if(p == echec){
 					noeuds.erase(temp);
 				}
 				else{
@@ -41,6 +39,7 @@ int BacktrackingNonRec::solve(){
 		}
 		cout<<"\n\n\n\n\n";
 	}
+	return nb_so;
 }
 
 void BacktrackingNonRec::branch(Noeud noeud){

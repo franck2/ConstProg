@@ -19,7 +19,9 @@ Proof Problem::testSat(Noeud node){
 	int i = 0;
 	while(i<constraints.size() && testt == succes){
 
-		testt= constraints[i]->test(node);
+		if(testt == succes){
+			testt= constraints[i]->test(node);
+		}
 		i++;
 	}
 	return testt;

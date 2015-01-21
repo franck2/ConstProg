@@ -7,10 +7,6 @@ Nqueen_colonne::Nqueen_colonne(){
 }
 
 Proof Nqueen_colonne::test(Noeud noeud){
-	return memeColonne(noeud);
-}
-
-Proof Nqueen_colonne::memeColonne(Noeud noeud){
 	std::vector<std::set<int> > domains = noeud.getDomains();
 	set<int> colonnes_utilises;
 	Proof resultat = succes;
@@ -34,3 +30,4 @@ Proof Nqueen_colonne::memeColonne(Noeud noeud){
 	}
 	return resultat;
 }
+
