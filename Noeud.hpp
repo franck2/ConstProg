@@ -15,6 +15,7 @@ public:
 	void toString();
 	std::vector<std::set<int> > getDomains();
 	void setDomains(std::vector<std::set<int> > d);
+	void clear_and_add(int pos, int val);
 
 private:
 	std::vector<std::set<int> > domains;

@@ -41,3 +41,10 @@ Noeud Noeud::copie(){
 	n.setDomains(domains);
 	return n;
 }
+
+void Noeud::clear_and_add(int pos, int val){
+	domains.at(pos).clear();
+	domains.at(pos).insert(val);
+}
+
+
