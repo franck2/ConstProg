@@ -26,3 +26,18 @@ void Noeud::toString(){
 	}
 }
 
+std::vector<std::set<int> > Noeud::getDomains(){
+
+	return domains;
+}
+
+void Noeud::setDomains(std::vector<std::set<int> > d){
+	domains = d;
+}
+
+Noeud Noeud::copie(){
+	Noeud n;
+
+	n.setDomains(domains);
+	return n;
+}

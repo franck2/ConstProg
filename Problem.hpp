@@ -5,9 +5,9 @@
 #include <vector>
 #include "Noeud.hpp"
 #include "Constraint.hpp"
+#include "Proof.hpp"
 
 
-enum Proof {echec, succes, indefini};
 class Problem{
 
 public:
