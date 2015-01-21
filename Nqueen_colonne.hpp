@@ -6,11 +6,11 @@
 #include "Proof.hpp"
 #include <set>
 
-class Nqueen: public Constraint{
+class Nqueen_colonne: public Constraint{
 
 public:
 	//teste la contrainte
-	Nqueen();
+	Nqueen_colonne();
 	Proof test(Noeud noeud);
 	Proof memeColonne(Noeud noeud);
 };

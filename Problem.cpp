@@ -1,5 +1,5 @@
 #include "Problem.hpp"
-#include "Nqueen.hpp"
+#include "Nqueen_colonne.hpp"
 using namespace std;
 
 Problem::Problem(){
@@ -18,8 +18,7 @@ Proof Problem::testSat(Noeud node){
 	Proof testt = succes;
 	int i = 0;
 	while(i<constraints.size() && testt == succes){
-		Nqueen n;
-		n.test(node);
+
 		testt= constraints[i]->test(node);
 		i++;
 	}

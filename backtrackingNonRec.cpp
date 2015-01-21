@@ -10,16 +10,17 @@ BacktrackingNonRec::BacktrackingNonRec(int x, std::vector<Constraint*> c):proble
 
 int BacktrackingNonRec::solve(){
 	int nb_so=0;
-	//while(!noeuds.empty()){
-
+	while(!noeuds.empty()){
+					int cpt =1;
 		std::list<Noeud>::iterator list_iter2 = noeuds.begin();
-		//while(list_iter2 != noeuds.end()){
-			int cpt =1;
+		while(list_iter2 != noeuds.end()){
+
 			cout<<"noeud : "<<cpt<<endl;
-			(*list_iter2).toString();
+
 			std::list<Noeud>::iterator temp = list_iter2;
 
 			list_iter2++;
+
 			Proof p = problem.testSat(*temp);
 
 				if(p==succes){
@@ -29,18 +30,17 @@ int BacktrackingNonRec::solve(){
 					noeuds.erase(temp);
 				}
 				else if(p==echec){
-					cout<<"echec"<<endl;
 					noeuds.erase(temp);
 				}
 				else{
-					cout<<"indef"<<endl;
 					branch(*temp);
 					noeuds.erase(temp);
 				}
 			cpt++;
 
-		//}
-	//}
+		}
+		cout<<"\n\n\n\n\n";
+	}
 }
 
 void BacktrackingNonRec::branch(Noeud noeud){
@@ -52,11 +52,7 @@ void BacktrackingNonRec::branch(Noeud noeud){
 			for (std::set<int>::iterator it=s.begin(); it!=s.end(); it++){
 				Noeud n;
 				n= noeud.copie();
-				n.getDomains().at(i).clear();
-				(n.getDomains())[i].insert(*it);
-				cout<<"new  "<<i<<endl;
-				n.toString();
-				cout<<"\nnew2"<<endl;
+				n.clear_and_add(i, *it);
 				(n.getDomains())[i].insert(*it);
 
 				noeuds.push_front(n);
