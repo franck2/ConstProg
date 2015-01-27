@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 	tab.push_back(&q2);
 	//BacktrackingNonRec b(0, tab);*/
 	
-	BranchAndPrune bb(10,tab);
+	BranchAndPrune bb(11,tab);
 	int nb_sol = bb.solve();
 	cout<<"il y a "<<nb_sol<<" solutions"<<endl;
 	return 0;

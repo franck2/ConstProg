@@ -10,7 +10,6 @@ int BranchAndPrune::solve(){
 	int nb_so = 0;
 	int cpt = 0;
 	while(!noeuds.empty()){
-		cout<<noeuds.size()<<endl;
 		std::list<Noeud>::iterator list_iter = noeuds.begin();
 
 		while(list_iter != noeuds.end()){
