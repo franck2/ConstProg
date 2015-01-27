@@ -1,5 +1,5 @@
-#ifndef DEF_BACKTRACKINGNONREC
-#define DEF_BACKTRACKINGNONREC
+#ifndef DEF_BRANCHANDPRUNE
+#define DEF_BRANCHANDPRUNE
 
 #include <iostream>
 #include <list>
@@ -8,14 +8,15 @@
 #include "Problem.hpp"
 #include "Constraint.hpp"
 
-class BacktrackingNonRec : public Solveur{
+class BranchAndPrune : public Solveur{
 
 public:
-	BacktrackingNonRec(int x, std::vector<Constraint*> contraintes);
+	BranchAndPrune(int x, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
 	//cre le sous-noeud d'un noeud
 	void branch(Noeud noeud);
+	void supprimer(int val,Noeud *n);
 
 private:
 	std::list<Noeud> noeuds;

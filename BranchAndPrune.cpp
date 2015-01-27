@@ -1,18 +1,16 @@
-#include "backtrackingNonRec.hpp"
+#include "BranchAndPrune.hpp"
 
 using namespace std;
 
-BacktrackingNonRec::BacktrackingNonRec(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
-	if(x > 0){
-		noeuds.push_front(problem.initialNode());
-	}
+BranchAndPrune::BranchAndPrune(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
+	noeuds.push_front(problem.initialNode());
 }
 
-int BacktrackingNonRec::solve(){
+int BranchAndPrune::solve(){
 	int nb_so = 0;
 	int cpt = 0;
 	while(!noeuds.empty()){
-
+		cout<<noeuds.size()<<endl;
 		std::list<Noeud>::iterator list_iter = noeuds.begin();
 
 		while(list_iter != noeuds.end()){
@@ -20,7 +18,6 @@ int BacktrackingNonRec::solve(){
 			std::list<Noeud>::iterator temp = list_iter;
 
 			list_iter++;
-
 			Proof p = problem.testSat(*temp);
 			if(p == succes){
 				nb_so++;
@@ -36,28 +33,33 @@ int BacktrackingNonRec::solve(){
 				noeuds.erase(temp);
 			}
 		}
-	cpt++;
+		cpt++;
 	}
 	return nb_so;
 }
 
-void BacktrackingNonRec::branch(Noeud noeud){
+void BranchAndPrune::branch(Noeud noeud){
 	int i=0;
+	int a_supprimer = 0;
 	bool trouve = false;
-
 	while(i < noeud.getDomains().size() && !trouve){
 		if(noeud.getDomains().at(i).size() > 1){
 			set<int> domain = noeud.getDomains().at(i);
 			for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
-				noeud.toString();
 				Noeud n;
 				n = noeud.copie();
+				supprimer(*it, &n);
 				n.clear_and_add(i, *it);
-
 				noeuds.push_front(n);
 				trouve = true;
 			}
 		}
 		i++;	
+	}
+}
+
+void BranchAndPrune::supprimer(int val,Noeud *n){			
+	for (int i = 0; i < n->getDomains().size(); i++){
+		n->supprimer(i, val);
 	}
 }

@@ -16,7 +16,6 @@ Proof Nqueen_diago::test(Noeud noeud){
 				if(domains.at(j).size() == 1){
 
 					if(*domains.at(i).begin()+(j-i) == *domains.at(j).begin() || *domains.at(i).begin()-(j-i) == *domains.at(j).begin()){
-
 						resultat = echec;
 					}
 				}
@@ -25,7 +24,6 @@ Proof Nqueen_diago::test(Noeud noeud){
 		else if(resultat != echec){
 			resultat = indefini;
 		}
-
 	}
 
 	return resultat;

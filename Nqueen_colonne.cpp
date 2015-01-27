@@ -10,7 +10,7 @@ Proof Nqueen_colonne::test(Noeud noeud){
 	std::vector<std::set<int> > domains = noeud.getDomains();
 	set<int> colonnes_utilises;
 	Proof resultat = succes;
-	for(int i = 0; i<domains.size(); i++){
+	for(int i = 0; i < domains.size(); i++){
 		std::set<int>::iterator it;
 
 		if(domains.at(i).size() == 1){
@@ -23,10 +23,9 @@ Proof Nqueen_colonne::test(Noeud noeud){
 				resultat = echec;
 			}
 		}
-		else if(resultat!=echec){
+		else if(resultat != echec){
 			resultat = indefini;
 		}
-
 	}
 	return resultat;
 }

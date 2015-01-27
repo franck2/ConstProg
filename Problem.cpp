@@ -6,7 +6,7 @@ Problem::Problem(){
 }
  
 Problem::Problem(int x, vector<Constraint*> cst){
-	n=x;
+	n = x;
 	constraints = cst;
 }
 
@@ -15,14 +15,14 @@ Noeud Problem::initialNode(){
 }
 
 Proof Problem::testSat(Noeud node){
-	Proof testt = succes;
+	Proof resultat = succes;
 	int i = 0;
-	while(i<constraints.size() && testt == succes){
+	while(i < constraints.size() && resultat == succes){
 
-		if(testt == succes){
-			testt= constraints[i]->test(node);
+		if(resultat == succes){
+			resultat = constraints[i]->test(node);
 		}
 		i++;
 	}
-	return testt;
+	return resultat;
 }
