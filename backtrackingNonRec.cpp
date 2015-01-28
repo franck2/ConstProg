@@ -49,7 +49,6 @@ void BacktrackingNonRec::branch(Noeud noeud){
 		if(noeud.getDomains().at(i).size() > 1){
 			set<int> domain = noeud.getDomains().at(i);
 			for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
-				noeud.toString();
 				Noeud n;
 				n = noeud.copie();
 				n.clear_and_add(i, *it);
