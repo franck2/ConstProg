@@ -46,17 +46,18 @@ int main(int argc, char *argv[]){
 				}
 
 				int nb_sol = solv->solve();
-				cout<<"il y a "<<nb_sol<<" solutions"<<endl;
+				delete(solv);
+				cout<<"il y a "<<nb_sol<<" solutions\n\n"<<endl;
 			}	
 			else{
-				cout<<"Ca ne va pas être possible, recommencer !"<<endl;
+				cout<<"Ca ne va pas être possible, recommencer !\n\n"<<endl;
 			}
 		}
 		else if(choix == 0){
 			arreter = true;
 		}
 		else{
-			cout<<"Ce choix n'existe pas !"<<endl;
+			cout<<"Ce choix n'existe pas !\n\n"<<endl;
 		}
 	}
 	return 0;
