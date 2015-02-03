@@ -5,14 +5,23 @@
 #include <set>
 #include <vector>
 #include "Noeud.hpp"
+#include "Solv.hpp"
+#include "Constraint.hpp"
 
-class Backtracking{
+class Backtracking : public Solveur {
 
 public:
-	Backtracking();
+	Backtracking(int x, std::vector<Constraint*> contraintes);
 	int solve();
-	void branch(Noeud noeud);
+    std::vector<Noeud> branch(Noeud noeud);
+
+private:
+
+    int solveRec(Noeud noeud, int nbSol=0);
+
+    Problem problem;
 
 };
 
 #endif
+

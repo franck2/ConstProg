@@ -25,7 +25,7 @@ int BacktrackingNonRec::solve(){
 			if(p == succes){
 				nb_so++;
 				cout<<"Solution numero "<<nb_so<<": "<<endl;
-				(*temp).toString();
+				temp->toString();
 				noeuds.erase(temp);
 			}
 			else if(p == echec){
@@ -57,6 +57,7 @@ void BacktrackingNonRec::branch(Noeud noeud){
 				trouve = true;
 			}
 		}
-		i++;	
+		i++;
 	}
 }
+

@@ -12,12 +12,8 @@ public:
 	//resoud le probleme et retourne le nombre de solutions
 	virtual int solve() = 0;
 	//cre le sous-noeud d'un noeud
-	virtual void branch(Noeud noeud) = 0;
-
-private:
-	std::list<Noeud> noeuds;
-	Problem p;
-
+	//virtual void branch(Noeud noeud) = 0;
 };
 
 #endif
+
