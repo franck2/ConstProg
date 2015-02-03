@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Noeud.hpp"
 #include <list>
-#include "backtracking.hpp"
-#include "backtrackingNonRec.hpp"
+#include "Backtracking.hpp"
+#include "BacktrackingNonRec.hpp"
 #include "Constraint.hpp"
 #include "Nqueen_colonne.hpp"
 #include "Nqueen_diago.hpp"
