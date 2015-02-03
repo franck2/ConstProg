@@ -30,7 +30,7 @@ int Backtracking::solveRec(Noeud noeud, int nbSol) {
 
     std::vector<Noeud> subNode(branch(noeud));
 
-    for (Noeud n: subNode) {
+    for (auto n: subNode) {
         nbSol = solveRec(n, nbSol);
     }
 

@@ -26,17 +26,15 @@ int BacktrackingNonRec::solve(){
 				nb_so++;
 				cout<<"Solution numero "<<nb_so<<": "<<endl;
 				temp->toString();
-				noeuds.erase(temp);
 			}
-			else if(p == echec){
-				noeuds.erase(temp);
-			}
-			else{
+			else if(p == indefini){
 				branch(*temp);
-				noeuds.erase(temp);
 			}
+
+            noeuds.erase(temp);
+
 		}
-	cpt++;
+        cpt++;
 	}
 	return nb_so;
 }

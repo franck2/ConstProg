@@ -9,67 +9,75 @@
 #include "BranchAndPrune.hpp"
 #include "Solv.hpp"
 
+#include <chrono>
+
 using namespace std;
 
 int main(int argc, char *argv[]){
 
-	bool arreter = false;
+    bool arreter = false;
 
-	while(!arreter){
-		int choix = 0;
+    while(!arreter){
+        int choix = 0;
 
-		cout<<"Quel algo voulez vous utiliser ?"<<endl;
-		cout<<"0- Arreter"<<endl;
-		cout<<"1- backtracking recursif"<<endl;
-		cout<<"2- backtracking non recursif"<<endl;
-		cout<<"3- branch and prune non recursif"<<endl;
+        cout<<"Quel algo voulez vous utiliser ?"<<endl;
+        cout<<"0- Arreter"<<endl;
+        cout<<"1- backtracking recursif"<<endl;
+        cout<<"2- backtracking non recursif"<<endl;
+        cout<<"3- branch and prune non recursif"<<endl;
 
-		cin>>choix;
-		if(choix > 0 && choix <= 3){
-			int nb_dame = 0;
+        cin>>choix;
+        if(choix > 0 && choix <= 3){
+            int nb_dame = 0;
 
-			cout<<"Combien de dames utiliser ?"<<endl;
-			cin>>nb_dame;
+            cout<<"Combien de dames utiliser ?"<<endl;
+            cin>>nb_dame;
 
-			if(nb_dame>=0){
-				std::vector<Constraint*> contraintes;
-				Solveur *solv;
-				if(choix == 1){
-					Nqueen_colonne contrainte_colonne;
-					Nqueen_diago contrainte_diago;
-					contraintes.push_back(&contrainte_colonne);
-					contraintes.push_back(&contrainte_diago);
-					solv = new Backtracking(nb_dame, contraintes);
-				}
+            if(nb_dame>=0){
+                std::vector<Constraint*> contraintes;
+                Solveur *solv;
+                if(choix == 1){
+                    contraintes.push_back(new Nqueen_colonne);
+                    contraintes.push_back(new Nqueen_diago);
+                    solv = new Backtracking(nb_dame, contraintes);
+                }
                 else if(choix == 2){
-					Nqueen_colonne contrainte_colonne;
-					Nqueen_diago contrainte_diago;
-					contraintes.push_back(&contrainte_colonne);
-					contraintes.push_back(&contrainte_diago);
-					solv = new BacktrackingNonRec(nb_dame, contraintes);
-				}
-				else if(choix == 3){
-					Nqueen_diago contrainte_diago;
-					contraintes.push_back(&contrainte_diago);
-					solv = new BranchAndPrune(nb_dame, contraintes);
-				}
+                    contraintes.push_back(new Nqueen_colonne);
+                    contraintes.push_back(new Nqueen_diago);
+                    solv = new BacktrackingNonRec(nb_dame, contraintes);
+                }
+                else if(choix == 3){
+                    contraintes.push_back(new Nqueen_diago);
+                    solv = new BranchAndPrune(nb_dame, contraintes);
+                }
 
-				int nb_sol = solv->solve();
 
-                delete(solv);
-				cout<<"il y a "<<nb_sol<<" solutions\n\n"<<endl;
-			}
-			else{
-				cout<<"Ca ne va pas être possible, recommencer !\n\n"<<endl;
-			}
-		}
-		else if(choix == 0){
-			arreter = true;
-		}
-		else{
-			cout<<"Ce choix n'existe pas !\n\n"<<endl;
-		}
-	}
-	return 0;
+                cout << "Start chrono" << endl;
+                auto startTime = chrono::system_clock::now();
+
+                int nb_sol = solv->solve();
+
+                auto duration = chrono::duration_cast<chrono::milliseconds>(
+                                                                   chrono::system_clock::now() - startTime);
+                cout << "Stop chrono" << endl;
+
+                delete solv;
+
+
+				cout << "il y a " << nb_sol << " solutions" << endl << endl << endl;
+                cout << "Temps de traitement : " << duration.count() << "ms" << endl;
+            }
+            else{
+                cout<<"Ca ne va pas être possible, recommencer !\n\n"<<endl;
+            }
+        }
+        else if(choix == 0){
+            arreter = true;
+        }
+        else{
+            cout<<"Ce choix n'existe pas !\n\n"<<endl;
+        }
+    }
+    return 0;
 }
 
