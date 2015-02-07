@@ -29,3 +29,4 @@ Proof Nqueen_diago::test(Noeud noeud){
 	return resultat;
 }
 
+

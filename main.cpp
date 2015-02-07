@@ -7,6 +7,7 @@
 #include "Nqueen_colonne.hpp"
 #include "Nqueen_diago.hpp"
 #include "BranchAndPrune.hpp"
+#include "RechercheLocale.hpp"
 #include "Solv.hpp"
 
 #include <chrono>
@@ -22,12 +23,13 @@ int main(int argc, char *argv[]){
 
         cout<<"Quel algo voulez vous utiliser ?"<<endl;
         cout<<"0- Arreter"<<endl;
-        cout<<"1- backtracking recursif"<<endl;
-        cout<<"2- backtracking non recursif"<<endl;
-        cout<<"3- branch and prune non recursif"<<endl;
+        cout<<"1- Backtracking recursif"<<endl;
+        cout<<"2- Backtracking non recursif"<<endl;
+        cout<<"3- Branch and prune non recursif"<<endl;
+        cout<<"4- Recherche locale"<<endl;
 
         cin>>choix;
-        if(choix > 0 && choix <= 3){
+        if(choix > 0 && choix <= 4){
             int nb_dame = 0;
 
             cout<<"Combien de dames utiliser ?"<<endl;
@@ -50,6 +52,10 @@ int main(int argc, char *argv[]){
                     contraintes.push_back(new Nqueen_diago);
                     solv = new BranchAndPrune(nb_dame, contraintes);
                 }
+		else if(choix == 4){
+			contraintes.push_back(new Nqueen_diago);
+			solv = new RechercheLocale(nb_dame, contraintes);
+		}
 
 
                 cout << "Start chrono" << endl;
@@ -64,7 +70,12 @@ int main(int argc, char *argv[]){
                 delete solv;
 
 
-				cout << "il y a " << nb_sol << " solutions" << endl << endl << endl;
+		if(choix!=4){
+			cout << "Il y a " << nb_sol << " solutions" << endl << endl << endl;
+		}
+		else{
+			cout << "La solution a été trouvée en " << nb_sol << " mouvements" << endl << endl << endl;
+		}
                 cout << "Temps de traitement : " << duration.count() << "ms" << endl;
             }
             else{
