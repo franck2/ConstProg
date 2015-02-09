@@ -15,12 +15,11 @@ public:
 	RechercheLocale(int x, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
-	//cre le sous-noeud d'un noeud
-	void branch(Noeud noeud);
 	Proof constr(Noeud n, int pos);
+	void initial_domains(int taille);
 
 private:
-	std::list<Noeud> noeuds;
+	Noeud noeuds;
 	Problem problem;
 
 };

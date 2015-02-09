@@ -3,7 +3,11 @@
 using namespace std;
 
 RechercheLocale::RechercheLocale(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
-	Noeud n;
+	initial_domains(x);
+}
+		
+
+void RechercheLocale::initial_domains(int x){
 
 	std::set<int> valeure_ok;
 	std::vector<std::set<int> > domains;
@@ -77,16 +81,16 @@ RechercheLocale::RechercheLocale(int x, std::vector<Constraint*> contraintes):pr
 			}
 		}
 	}
-	n.setDomains(domains);
-	noeuds.push_front(n);
+	noeuds.setDomains(domains);
+
 }
-		
+
 
 int RechercheLocale::solve(){
-	Noeud n = *noeuds.begin();
+
 	int i = 0;
 	int cpt=0;
-	if((noeuds.begin())->taille()!=0){
+	if(noeuds.taille()>0){
 		bool fini = false;
 		while(!fini){
 			bool machin = true;
@@ -94,26 +98,27 @@ int RechercheLocale::solve(){
 
 			while(machin){
 
-				Proof p = constr(n, i);
+				Proof p = constr(noeuds, i);
 				if(p==echec){
-					n.move(i);
+					noeuds.move(i);
 					cpt++;
+					cout<<cpt<<endl;
 				}
 			
-				i = (i+1)%n.taille();
+				i = (i+1)%noeuds.taille();
 				if(i == j){
 					machin = false;
-					i = (i+1)%n.taille();
+					i = (i+1)%noeuds.taille();
 				}
 			}
 
-			Proof p = problem.testSat(n);
+			Proof p = problem.testSat(noeuds);
 			if(p == succes){
 				fini=true;
 			}
 		}
 		cout<<"\n\nSolution trouvée: \n\n";
-		n.toString();
+		noeuds.toString();
 	}
 	else{
 		cout<<"\n\nIl n'y a pas de solution"<<endl;
@@ -138,8 +143,3 @@ Proof RechercheLocale::constr(Noeud n, int pos){
 	return resultat;
 
 }
-
-void RechercheLocale::branch(Noeud noeud){
-	
-}
-
