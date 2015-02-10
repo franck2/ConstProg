@@ -6,7 +6,7 @@
 #include "Constraint.hpp"
 #include "Nqueen_colonne.hpp"
 #include "Nqueen_diago.hpp"
-#include "BranchAndPrune.hpp"
+#include "BranchAndPruneNonRec.hpp"
 #include "RechercheLocale.hpp"
 #include "Solv.hpp"
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
                 }
                 else if(choix == 3){
                     contraintes.push_back(new Nqueen_diago);
-                    solv = new BranchAndPrune(nb_dame, contraintes);
+                    solv = new BranchAndPruneNonRec(nb_dame, contraintes);
                 }
 		else if(choix == 4){
 			contraintes.push_back(new Nqueen_diago);

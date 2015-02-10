@@ -1,5 +1,5 @@
-#ifndef DEF_BRANCHANDPRUNE
-#define DEF_BRANCHANDPRUNE
+#ifndef DEF_BRANCHANDPRUNE_NON_REC
+#define DEF_BRANCHANDPRUNE_NON_REC
 
 #include <iostream>
 #include <list>
@@ -8,10 +8,10 @@
 #include "Problem.hpp"
 #include "Constraint.hpp"
 
-class BranchAndPrune : public Solveur{
+class BranchAndPruneNonRec : public Solveur{
 
 public:
-	BranchAndPrune(int x, std::vector<Constraint*> contraintes);
+	BranchAndPruneNonRec(int x, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
 	//cre le sous-noeud d'un noeud
@@ -25,3 +25,4 @@ private:
 };
 
 #endif
+

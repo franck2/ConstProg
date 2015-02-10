@@ -1,12 +1,12 @@
-#include "BranchAndPrune.hpp"
+#include "BranchAndPruneNonRec.hpp"
 
 using namespace std;
 
-BranchAndPrune::BranchAndPrune(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
+BranchAndPruneNonRec::BranchAndPruneNonRec(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
 	noeuds.push_front(problem.initialNode());
 }
 
-int BranchAndPrune::solve(){
+int BranchAndPruneNonRec::solve(){
 	int nb_so = 0;
 	int cpt = 0;
 	while(!noeuds.empty()){
@@ -37,7 +37,7 @@ int BranchAndPrune::solve(){
 	return nb_so;
 }
 
-void BranchAndPrune::branch(Noeud noeud){
+void BranchAndPruneNonRec::branch(Noeud noeud){
 	int i=0;
 	int a_supprimer = 0;
 	bool trouve = false;
@@ -53,12 +53,13 @@ void BranchAndPrune::branch(Noeud noeud){
 				trouve = true;
 			}
 		}
-		i++;	
+		i++;
 	}
 }
 
-void BranchAndPrune::supprimer(int val,Noeud *n){			
+void BranchAndPruneNonRec::supprimer(int val,Noeud *n){
 	for (int i = 0; i < n->getDomains().size(); i++){
 		n->supprimer(i, val);
 	}
 }
+
