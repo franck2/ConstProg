@@ -2,12 +2,12 @@ DEBUG=yes
 EXEC=solver
 ifeq (${DEBUG},yes)
 	#debug
-	CXXFLAGS=-O0 -g --std=c++11
-	LDFLAGS=
+	CXXFLAGS=-O0 -g --std=c++11 -fopenmp
+	LDFLAGS=-fopenmp
 else
 	#release
-	CXXFLAGS=-O2 -std=c++11
-	LDFLAGS=
+	CXXFLAGS=-O2 -std=c++11 -fopenmp
+	LDFLAGS=-fopenmp
 endif
 
 SRC= $(wildcard *.cpp)

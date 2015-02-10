@@ -17,7 +17,7 @@ public:
 
 private:
 
-    int solveRec(Noeud noeud, int nbSol=0);
+    int solveRec(Noeud noeud);
 
     Problem problem;
 

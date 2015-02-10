@@ -10,28 +10,28 @@ int Backtracking::solve() {
     return solveRec(problem.initialNode());
 }
 
-int Backtracking::solveRec(Noeud noeud, int nbSol) {
+int Backtracking::solveRec(Noeud noeud) {
 
     Proof p = problem.testSat(noeud);
     if (p == succes) {
 
-        nbSol++;
-
-        std::cout << "Solution numero " << nbSol << " :" << std::endl;
+        std::cout << "Solution :" << std::endl;
         noeud.toString();
 
-        return nbSol;
+        return 1;
     }
     else if (p == echec) {
 
-        return nbSol;
+        return 0;
 
     }
 
     std::vector<Noeud> subNode(branch(noeud));
-
-    for (auto n: subNode) {
-        nbSol = solveRec(n, nbSol);
+    int nbSol = 0;
+#pragma omp parallel for
+    for(auto it = subNode.begin(); it < subNode.end(); it++) {
+//    for (auto n: subNode) {
+        nbSol += solveRec(*it);
     }
 
     return nbSol;
@@ -49,6 +49,7 @@ std::vector<Noeud> Backtracking::branch(Noeud noeud) {
     while(i < noeud.getDomains().size() && !trouve){
         if(noeud.getDomains().at(i).size() > 1){
             std::set<int> domain = noeud.getDomains().at(i);
+
             for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
                 Noeud n;
                 n = noeud.copie();
