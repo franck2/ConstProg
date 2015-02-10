@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
         cout<<"5- Recherche locale"<<endl;
 
         cin>>choix;
-        if(choix > 0 && choix <= 4){
+        if(choix > 0 && choix <= 5){
             int nb_dame = 0;
 
             cout<<"Combien de dames utiliser ?"<<endl;
