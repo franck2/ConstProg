@@ -1,4 +1,4 @@
-DEBUG=yes
+DEBUG=no
 EXEC=solver
 ifeq (${DEBUG},yes)
 	#debug
@@ -21,8 +21,6 @@ endif
 $(EXEC): $(OBJ)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-%.o: %.cpp %.h
-	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 .PHONY: clean mrproper
 
