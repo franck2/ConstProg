@@ -5,13 +5,13 @@ using namespace std;
 RechercheLocale::RechercheLocale(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
 	initial_domains(x);
 }
-		
+
 
 void RechercheLocale::initial_domains(int x){
 
 	std::set<int> valeure_ok;
 	std::vector<std::set<int> > domains;
-	
+
 	//initialisation
 	std::set<int> temp1;
 	temp1.insert(1);
@@ -40,11 +40,11 @@ void RechercheLocale::initial_domains(int x){
 						trouve = true;
 					}
 				}
-				i++;				
+				i++;
 			}
-			 
+
 			if(!trouve){
-				int val = *domains.at(j).begin() + 1; 
+				int val = *domains.at(j).begin() + 1;
 				j--;
 				valeure_ok.erase(val-1);
 				domains.pop_back();
@@ -94,7 +94,7 @@ int RechercheLocale::solve(){
 		bool fini = false;
 		while(!fini){
 			bool machin = true;
-			int j = i; 
+			int j = i;
 
 			while(machin){
 
@@ -102,9 +102,9 @@ int RechercheLocale::solve(){
 				if(p==echec){
 					noeuds.move(i);
 					cpt++;
-					cout<<cpt<<endl;
+					//cout<<cpt<<endl;
 				}
-			
+
 				i = (i+1)%noeuds.taille();
 				if(i == j){
 					machin = false;
@@ -143,3 +143,4 @@ Proof RechercheLocale::constr(Noeud n, int pos){
 	return resultat;
 
 }
+
