@@ -16,6 +16,7 @@ public:
 	int solve();
 	//cre le sous-noeud d'un noeud
 	void branch(Noeud noeud);
+	//supprime une valeur dans tous les ensembles du noeud
 	void supprimer(int val,Noeud *n);
 
 private:

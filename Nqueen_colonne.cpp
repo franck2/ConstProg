@@ -8,6 +8,7 @@ Nqueen_colonne::Nqueen_colonne(){
 
 Proof Nqueen_colonne::test(Noeud noeud){
 	std::vector<std::set<int> > domains = noeud.getDomains();
+	//pour savoir quelles colonnes sont deja utilises dans un noeud
 	set<int> colonnes_utilises;
 	Proof resultat = succes;
 	for(int i = 0; i < domains.size(); i++){

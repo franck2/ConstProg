@@ -7,6 +7,9 @@ RechercheLocale::RechercheLocale(int x, std::vector<Constraint*> contraintes):pr
 }
 
 
+/*
+*On fait en sorte de creer un premier assignement ou le voisin directe d'une dame n'est pas dans sa diagonale.
+*/
 void RechercheLocale::initial_domains(int x){
 
 	std::set<int> valeure_ok;
@@ -21,15 +24,18 @@ void RechercheLocale::initial_domains(int x){
 	valeure_ok.insert(1);
 	bool fini = false;
 
+	//tan qu'on n'as pas trouve de solution, ou que l'on sait qu'il n'y a pas de solution
 	while(!fini){
+		//si on a reussi a placer toutes les dames on arrete
 		if(domains.size() == x){
 			fini = true;
 		}
 		else{
 			bool trouve = false;
+			//position dans le tableau d'ensemble
 			int i = 1;
 			while(!trouve && i <= x){
-
+				//si on n'a pas encore placer la valeur de i, on regarde si on peut la placer
 				if(valeure_ok.find(i) == valeure_ok.end()){
 					if(i != *domains.at(j).begin()+1 && i != *domains.at(j).begin()-1){
 						valeure_ok.insert(i);
@@ -42,14 +48,14 @@ void RechercheLocale::initial_domains(int x){
 				}
 				i++;
 			}
-
+			//si on n'a pas pu placer i alors c'est que la dernière valeur ajoutee n'est pas a sa place
 			if(!trouve){
 				int val = *domains.at(j).begin() + 1;
 				j--;
 				valeure_ok.erase(val-1);
 				domains.pop_back();
 				bool continuer = true;
-
+				//on fait ca jusqu'a avoir trouve un bon debut d'assignement
 				while(continuer){
 					while(val > x && j>-1){
 						val = *domains.at(j).begin() + 1;
@@ -57,6 +63,7 @@ void RechercheLocale::initial_domains(int x){
 						valeure_ok.erase(val-1);
 						domains.pop_back();
 					}
+					//il n'y a pas de solution
 					if(j<0 && val>x){
 						continuer = false;
 						fini = true;
@@ -102,7 +109,6 @@ int RechercheLocale::solve(){
 				if(p==echec){
 					noeuds.move(i);
 					cpt++;
-					//cout<<cpt<<endl;
 				}
 
 				i = (i+1)%noeuds.taille();
@@ -129,11 +135,13 @@ int RechercheLocale::solve(){
 Proof RechercheLocale::constr(Noeud n, int pos){
 	std::vector<std::set<int> > domains = n.getDomains();
 	Proof resultat = succes;
+	//pour la premiere diagonale 
 	for(int i = 0; i<pos; i++){
 		if(*domains.at(i).begin()+(pos-i) == *domains.at(pos).begin() || *domains.at(i).begin()-(pos-i) == *domains.at(pos).begin()){
 			resultat = echec;
 		}
 	}
+	//pour la deuxième diagonale 
 	for(int i = pos+1; i<n.taille(); i++){
 		if(*domains.at(pos).begin()+(i-pos) == *domains.at(i).begin() || *domains.at(pos).begin()-(i-pos) == *domains.at(i).begin()){
 			resultat = echec;

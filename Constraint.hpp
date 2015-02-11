@@ -5,6 +5,9 @@
 #include "Noeud.hpp"
 #include "Proof.hpp"
 
+/*
+*Interface servant a implementer des contraintes
+*/
 class Constraint{
 
 public:

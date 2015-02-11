@@ -8,10 +8,14 @@
 #include "Problem.hpp"
 #include "Constraint.hpp"
 
+/*
+* Cette classe implémente l'algorithme de backtracking de facon non recursive.
+* Le but l'algorithme est de trouver le nombre de solution au problème du N-Queen.
+*/
 class BacktrackingNonRec : public Solveur{
 
 public:
-	BacktrackingNonRec(int x, std::vector<Constraint*> contraintes);
+	BacktrackingNonRec(int nombre_dames, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
 	//cre le sous-noeud d'un noeud

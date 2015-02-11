@@ -6,10 +6,13 @@
 #include "Proof.hpp"
 #include <set>
 
+/*
+*Implemente la contrainte: pas plus d'une dame par diagonale
+*/
 class Nqueen_diago: public Constraint{
 
 public:
-	//teste la contrainte
+
 	Nqueen_diago();
 	Proof test(Noeud noeud);
 };

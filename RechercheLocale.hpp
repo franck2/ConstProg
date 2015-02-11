@@ -9,13 +9,19 @@
 #include "Problem.hpp"
 #include "Constraint.hpp"
 
+
+/*
+*Implemente un algorithme qui permet de trouver une solution a partir d'un assignement initial
+*/
 class RechercheLocale : public Solveur{
 
 public:
 	RechercheLocale(int x, std::vector<Constraint*> contraintes);
-	//resoud le probleme et retourne le nombre de solutions
+	//resoud le probleme et retourne le nombre de mouvement
 	int solve();
+	//verifie si une dame est en conflit avec au moins une autre, retourne succes ou echec
 	Proof constr(Noeud n, int pos);
+	//cree un assignement initial
 	void initial_domains(int taille);
 
 private:

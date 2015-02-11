@@ -6,6 +6,9 @@ Nqueen_diago::Nqueen_diago(){
 
 }
 
+/**
+*On ne regarde que les diagonale "basses" celle qui partent vers le bas de l'echequier, car on parcour le tableau de haut en bas.
+*/
 Proof Nqueen_diago::test(Noeud noeud){
 
 	std::vector<std::set<int> > domains = noeud.getDomains();

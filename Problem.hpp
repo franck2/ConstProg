@@ -7,19 +7,22 @@
 #include "Constraint.hpp"
 #include "Proof.hpp"
 
-
+/*
+*Classe qui s'occupe de verifier si les contraintes d'un algo sont respectees
+*/
 class Problem{
 
 public:
 	~Problem();
 	Problem(int x, std::vector<Constraint*> cst);
 	Noeud initialNode();
+	//verifie si le socntraintes sont respectes
 	Proof testSat(Noeud node);
 
 private:
+	//le nombre de dammes
 	int n;
-	//en c++ les class abstraites (interfaces en java) ne peuvent pas etre mis
-	//en template dans un vector, sauf si c'est en pointeur
+	//les contraintes d'un probleme
 	std::vector<Constraint*> constraints;
 };
 

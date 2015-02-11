@@ -68,15 +68,7 @@ void Noeud::supprimer(int pos, int val){
 	domains.at(pos).erase(val);
 }
 
-int Noeud::get(int pos){
-	return *domains.at(pos).begin();
-}
 
-void Noeud::set(int val){
-	std::set<int> domain;
-	domain.insert(val);
-	domains.push_back(domain);
-}
 
 void Noeud::move(int i){
 	std::set<int> temp = domains.at((i+ 1)%domains.size() );

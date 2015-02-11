@@ -6,10 +6,13 @@
 #include "Proof.hpp"
 #include <set>
 
+/**
+*Classe implementant la contrainte pas plus de une dame par colonne
+*/
 class Nqueen_colonne: public Constraint{
 
 public:
-	//teste la contrainte
+
 	Nqueen_colonne();
 	Proof test(Noeud noeud);
 };
