@@ -2,7 +2,7 @@
 
 using namespace std;
 
-BacktrackingNonRec::BacktrackingNonRec(int nombre_dames, std::vector<Constraint*> contraintes):problem(nombre_dames,contraintes){
+BacktrackingNonRec::BacktrackingNonRec(unsigned short int nombre_dames, std::vector<Constraint*> contraintes):problem(nombre_dames,contraintes){
 	if(nombre_dames > 0){
 		noeuds.push_front(problem.initialNode());
 	}
@@ -64,8 +64,8 @@ void BacktrackingNonRec::branch(Noeud noeud){
 	while( !trouve){
 		//si le domaine a la position i a une taille superieure a 1 alors on peut generer les sous noeuds
 		if(noeud.getDomains().at(i).size() > 1){
-			set<int> domain = noeud.getDomains().at(i);
-			for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
+			set<unsigned short int> domain = noeud.getDomains().at(i);
+			for (std::set<unsigned short int>::iterator it = domain.begin(); it != domain.end(); it++){
 				Noeud n;
 				n = noeud.copie();
 				n.clear_and_add(i, *it);

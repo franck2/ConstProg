@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     bool arreter = false;
 
     while(!arreter){
-        int choix = 0;
+        unsigned short int choix = 0;
 
         cout<<"Quel algo voulez vous utiliser ?"<<endl;
         cout<<"0- Arreter"<<endl;
@@ -28,11 +28,12 @@ int main(int argc, char *argv[]){
         cout<<"2- Backtracking non recursif"<<endl;
         cout<<"3- Branch and prune"<<endl;
         cout<<"4- Branch and prune non recursif"<<endl;
-        cout<<"5- Recherche locale"<<endl;
+        cout<<"5- Recherche locale avec un bon assignement initial"<<endl;
+        cout<<"6- Recherche locale avec un mauvais assignement initial"<<endl;
 
         cin>>choix;
-        if(choix > 0 && choix <= 5){
-            int nb_dame = 0;
+        if(choix > 0 && choix <= 6){
+            unsigned short int nb_dame = 0;
 
             cout<<"Combien de dames utiliser ?"<<endl;
             cin>>nb_dame;
@@ -60,7 +61,11 @@ int main(int argc, char *argv[]){
                 }
                 else if(choix == 5){
                     contraintes.push_back(new Nqueen_diago);
-                    solv = new RechercheLocale(nb_dame, contraintes);
+                    solv = new RechercheLocale(true, nb_dame, contraintes);
+                }
+                else if(choix == 6){
+                    contraintes.push_back(new Nqueen_diago);
+                    solv = new RechercheLocale(false, nb_dame, contraintes);
                 }
 
 
@@ -76,7 +81,7 @@ int main(int argc, char *argv[]){
                 delete solv;
 
 
-                if(choix!=5){
+                if(choix!=5 && choix!=6){
                     cout << "Il y a " << nb_sol << " solutions" << endl << endl << endl;
                 }
                 else{

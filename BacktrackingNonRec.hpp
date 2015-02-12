@@ -15,7 +15,7 @@
 class BacktrackingNonRec : public Solveur{
 
 public:
-	BacktrackingNonRec(int nombre_dames, std::vector<Constraint*> contraintes);
+	BacktrackingNonRec(unsigned short int nombre_dames, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
 	//cre le sous-noeud d'un noeud

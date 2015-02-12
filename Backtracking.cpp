@@ -2,7 +2,7 @@
 
 #include "Proof.hpp"
 
-Backtracking::Backtracking(int x, std::vector<Constraint*> contraintes):problem(x,contraintes) {
+Backtracking::Backtracking(unsigned short int x, std::vector<Constraint*> contraintes):problem(x,contraintes) {
 }
 
 int Backtracking::solve() {
@@ -48,9 +48,9 @@ std::vector<Noeud> Backtracking::branch(Noeud noeud) {
 
     while(i < noeud.getDomains().size() && !trouve){
         if(noeud.getDomains().at(i).size() > 1){
-            std::set<int> domain = noeud.getDomains().at(i);
+            std::set<unsigned short int> domain = noeud.getDomains().at(i);
 
-            for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
+            for (std::set<unsigned short int>::iterator it = domain.begin(); it != domain.end(); it++){
                 Noeud n;
                 n = noeud.copie();
                 n.clear_and_add(i, *it);

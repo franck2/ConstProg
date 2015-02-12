@@ -11,7 +11,7 @@ Nqueen_diago::Nqueen_diago(){
 */
 Proof Nqueen_diago::test(Noeud noeud){
 
-	std::vector<std::set<int> > domains = noeud.getDomains();
+	std::vector<std::set<unsigned short int> > domains = noeud.getDomains();
 	Proof resultat = succes;
 	for(int i = 0; i<domains.size(); i++){
 		if(domains.at(i).size() == 1){

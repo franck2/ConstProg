@@ -3,7 +3,7 @@
 #include <set>
 #include "Proof.hpp"
 
-BranchAndPrune::BranchAndPrune(int x, std::vector<Constraint*> contraintes):problem(x,contraintes) {
+BranchAndPrune::BranchAndPrune(unsigned short int x, std::vector<Constraint*> contraintes):problem(x,contraintes) {
 }
 
 int BranchAndPrune::solve() {
@@ -43,15 +43,15 @@ std::vector<Noeud> BranchAndPrune::branch(Noeud noeud) {
 
     std::vector<Noeud> newNoeuds;
 
-    int i=0;
+    int i = 0;
     bool trouve = false;
 
 
     while(i < noeud.getDomains().size() && !trouve){
         if(noeud.getDomains().at(i).size() > 1){
-            std::set<int> domain = noeud.getDomains().at(i);
+            std::set<unsigned short int> domain = noeud.getDomains().at(i);
 
-            for (std::set<int>::iterator it = domain.begin(); it != domain.end(); it++){
+            for (std::set<unsigned short int>::iterator it = domain.begin(); it != domain.end(); it++){
                 Noeud n;
                 n = noeud.copie();
                 prune(*it, &n);
@@ -66,7 +66,7 @@ std::vector<Noeud> BranchAndPrune::branch(Noeud noeud) {
     return newNoeuds;
 }
 
-void BranchAndPrune::prune(int val, Noeud *n) {
+void BranchAndPrune::prune(unsigned short int val, Noeud *n) {
     for (int i = 0; i < n->getDomains().size(); ++i) {
         n->supprimer(i, val);
     }

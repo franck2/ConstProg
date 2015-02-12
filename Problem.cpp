@@ -9,7 +9,7 @@ Problem::~Problem() {
     }
 }
 
-Problem::Problem(int x, vector<Constraint*> cst){
+Problem::Problem(unsigned short int x, vector<Constraint*> cst){
     n = x;
     constraints = cst;
 }

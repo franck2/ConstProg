@@ -14,14 +14,14 @@ class Problem{
 
 public:
 	~Problem();
-	Problem(int x, std::vector<Constraint*> cst);
+	Problem(unsigned short int x, std::vector<Constraint*> cst);
 	Noeud initialNode();
 	//verifie si le socntraintes sont respectes
 	Proof testSat(Noeud node);
 
 private:
 	//le nombre de dammes
-	int n;
+	unsigned short int n;
 	//les contraintes d'un probleme
 	std::vector<Constraint*> constraints;
 };

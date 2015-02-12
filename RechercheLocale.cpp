@@ -2,21 +2,27 @@
 
 using namespace std;
 
-RechercheLocale::RechercheLocale(int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
-	initial_domains(x);
+RechercheLocale::RechercheLocale(bool assignement, unsigned short int x, std::vector<Constraint*> contraintes):problem(x,contraintes){
+	
+	if(assignement){
+		initial_domains1(x);
+	}
+	else{
+		initial_domains2(x);
+	}
 }
 
 
 /*
 *On fait en sorte de creer un premier assignement ou le voisin directe d'une dame n'est pas dans sa diagonale.
 */
-void RechercheLocale::initial_domains(int x){
+void RechercheLocale::initial_domains1(unsigned short int x){
 
-	std::set<int> valeure_ok;
-	std::vector<std::set<int> > domains;
+	std::set<unsigned short int> valeure_ok;
+	std::vector<std::set<unsigned short int> > domains;
 
 	//initialisation
-	std::set<int> temp1;
+	std::set<unsigned short int> temp1;
 	temp1.insert(1);
 	domains.push_back(temp1);
 	//position du tableau ou l'on veut ajouter une valeur (cette position n'existe pas encore)
@@ -27,6 +33,7 @@ void RechercheLocale::initial_domains(int x){
 	//tan qu'on n'as pas trouve de solution, ou que l'on sait qu'il n'y a pas de solution
 	while(!fini){
 		//si on a reussi a placer toutes les dames on arrete
+		noeuds.toString2();
 		if(domains.size() == x){
 			fini = true;
 		}
@@ -39,7 +46,7 @@ void RechercheLocale::initial_domains(int x){
 				if(valeure_ok.find(i) == valeure_ok.end()){
 					if(i != *domains.at(j).begin()+1 && i != *domains.at(j).begin()-1){
 						valeure_ok.insert(i);
-						std::set<int> temp;
+						std::set<unsigned short int> temp;
 						temp.insert(i);
 						domains.push_back(temp);
 						j++;
@@ -70,7 +77,7 @@ void RechercheLocale::initial_domains(int x){
 					}
 					else if(valeure_ok.find(val) == valeure_ok.end()){
 						if(j==-1 || (val != (*domains.at(j).begin()+1) && val != (*domains.at(j).begin() - 1))){
-						std::set<int> temp;
+						std::set<unsigned short int> temp;
 						temp.insert(val);
 						valeure_ok.insert(val);
 							domains.push_back(temp);
@@ -87,6 +94,18 @@ void RechercheLocale::initial_domains(int x){
 				}
 			}
 		}
+	}
+	noeuds.setDomains(domains);
+
+}
+
+//place une dame sur chaque case de la digonale partant du coin superieur gauche, allant jusqu'au coin inferieur droit.
+void RechercheLocale::initial_domains2(unsigned short int x){
+	std::vector<std::set<unsigned short int> > domains;
+	for(int i = 1; i <= x; i++){
+		std::set<unsigned short int> temp1;
+		temp1.insert(i);
+		domains.push_back(temp1);
 	}
 	noeuds.setDomains(domains);
 
@@ -133,7 +152,7 @@ int RechercheLocale::solve(){
 }
 
 Proof RechercheLocale::constr(Noeud n, int pos){
-	std::vector<std::set<int> > domains = n.getDomains();
+	std::vector<std::set<unsigned short int> > domains = n.getDomains();
 	Proof resultat = succes;
 	//pour la premiere diagonale 
 	for(int i = 0; i<pos; i++){

@@ -11,13 +11,13 @@
 class BranchAndPruneNonRec : public Solveur{
 
 public:
-	BranchAndPruneNonRec(int x, std::vector<Constraint*> contraintes);
+	BranchAndPruneNonRec(unsigned short int x, std::vector<Constraint*> contraintes);
 	//resoud le probleme et retourne le nombre de solutions
 	int solve();
 	//cre le sous-noeud d'un noeud
 	void branch(Noeud noeud);
 	//supprime une valeur dans tous les ensembles du noeud
-	void supprimer(int val,Noeud *n);
+	void supprimer(unsigned short int val,Noeud *n);
 
 private:
 	std::list<Noeud> noeuds;

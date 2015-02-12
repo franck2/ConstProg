@@ -11,7 +11,7 @@
 class Backtracking : public Solveur {
 
 public:
-	Backtracking(int x, std::vector<Constraint*> contraintes);
+	Backtracking(unsigned short int x, std::vector<Constraint*> contraintes);
 	int solve();
     std::vector<Noeud> branch(Noeud noeud);
 
