@@ -28,8 +28,8 @@ int main(int argc, char *argv[]){
         cout<<"2- Backtracking non recursif"<<endl;
         cout<<"3- Branch and prune"<<endl;
         cout<<"4- Branch and prune non recursif"<<endl;
-        cout<<"5- Recherche locale avec un bon assignement initial"<<endl;
-        cout<<"6- Recherche locale avec un mauvais assignement initial"<<endl;
+        cout<<"5- Recherche locale avec un assignement reflechie"<<endl;
+        cout<<"6- Recherche locale avec un assignement non reflechie"<<endl;
 
         cin>>choix;
         if(choix > 0 && choix <= 6){
